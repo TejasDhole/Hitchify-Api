@@ -8,8 +8,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.sql.Time;
+import java.util.Date;
+
 @Getter
 @Setter
+
 @Document(collection = "Rides")
 public class RideData {
 
@@ -22,6 +26,11 @@ public class RideData {
     private String endPoint;
     private GeoJsonPoint startGeoPoint;
     private GeoJsonPoint endGeoPoint;
+    private Date date;
+//    private Time time;
+    private int passenger;
+    private int fare;
+    private String about;
 
 
 //    private String journeyDate;

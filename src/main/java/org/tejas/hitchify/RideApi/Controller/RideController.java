@@ -20,7 +20,7 @@ public class RideController {
 
 
     @Autowired
-    private RideRepository rideRepository;
+    private RideRepository rideRepository ;
     @GetMapping("/Rides")
     public ResponseEntity<List<RideData>> getAllRides(){
 List<RideData> rides = rideRepository.findAll();
@@ -33,11 +33,11 @@ List<RideData> rides = rideRepository.findAll();
         postRideResponse ridedata = new postRideResponse();
         try {
 
-            // Save the ride
+
             ridedata = rideRepository.save(ride);
             return new ResponseEntity<>(ridedata, HttpStatus.CREATED);
         } catch (Exception e) {
-            // Handle any errors
+
             return new ResponseEntity<>(ridedata, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -53,6 +53,7 @@ List<RideData> rides = rideRepository.findAll();
                                                         @RequestParam(value = "endGeoPoint") GeoJsonPoint endGeoPoint) {
         return rideRepository.findByQueryParams( startGeoPoint, endGeoPoint);
     }
+
 
 
 }

@@ -24,7 +24,7 @@ public class RideRepositoryImpl  implements RideRepository {
 
 
     private final MongoTemplate mongoTemplate;
-    private RideRepository  rideRepository;
+
 
     @Autowired
     public RideRepositoryImpl(MongoTemplate mongoTemplate) {
@@ -41,13 +41,20 @@ public class RideRepositoryImpl  implements RideRepository {
         postRideResponse response = new postRideResponse();
 
         RideData rideData = new RideData();
-        String id = "ride:" + randomUUID().toString();
-        rideData.setId(id);
+//        String id = "ride:" + randomUUID().toString();
+        rideData.setId("ride:" + randomUUID().toString());
         rideData.setDrivername(ride.getDrivername());
         rideData.setStartPoint(ride.getStartPoint());
         rideData.setEndPoint(ride.getEndPoint());
         rideData.setStartGeoPoint(ride.getStartGeoPoint());
         rideData.setEndGeoPoint(ride.getEndGeoPoint());
+        rideData.setFare(ride.getFare());
+        rideData.setAbout(ride.getAbout());
+        rideData.setDate(ride.getDate());
+//        rideData.setTime(ride.getTime());
+        rideData.setPassenger(ride.getPassenger());
+
+
 
 
         RideData savedRide =  mongoTemplate.save(rideData);
@@ -58,6 +65,12 @@ public class RideRepositoryImpl  implements RideRepository {
         response.setEndPoint(savedRide.getEndPoint());
         response.setStartGeoPoint(savedRide.getStartGeoPoint());
         response.setEndGeoPoint(savedRide.getEndGeoPoint());
+        response.setFare(savedRide.getFare());
+        response.setDate(savedRide.getDate());
+//        response.setTime(savedRide.getTime());
+        response.setPassenger(savedRide.getPassenger());
+        response.setAbout(savedRide.getAbout());
+
 
        return response;
     }
